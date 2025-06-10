@@ -54,7 +54,6 @@ const GujaratiTeacherPage = lazy(() => import('@/pages/GujaratiTeacherPage'));
 const MathematicsTeacherPage = lazy(() => import('@/pages/MathematicsTeacherPage'));
 const EnglishPage = lazy(() => import('@/pages/EnglishPage'));
 const TransitionDemoPage = lazy(() => import('@/pages/TransitionDemoPage'));
-const AnimationDemoPage = lazy(() => import('@/pages/AnimationDemoPage'));
 
 // Flashcard Pages
 const FlashcardGeneratorPage = lazy(() => import('@/pages/FlashcardGeneratorPage'));
@@ -108,7 +107,6 @@ export const mainRoutes: RouteObject[] = [
   { path: '/social-science/teacher', element: suspenseWrapper(<SocialScienceTeacherPage />) },
   { path: '/english', element: suspenseWrapper(<EnglishPage />) },
   { path: '/transition-demo', element: suspenseWrapper(<TransitionDemoPage />) },
-  { path: '/animation-demo', element: suspenseWrapper(<AnimationDemoPage />) },
 
   { path: '*', element: suspenseWrapper(<NotFound />) } // Also lazy load NotFound
 ];
