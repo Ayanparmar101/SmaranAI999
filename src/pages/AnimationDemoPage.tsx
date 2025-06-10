@@ -1,9 +1,10 @@
 import React from 'react';
-import { 
-  AnimatedText, 
-  AnimatedHeader, 
-  AnimatedCard, 
-  LoadingScreen 
+import {
+  AnimatedText,
+  AnimatedHeader,
+  AnimatedCard,
+  LoadingScreen,
+  ScrollReveal
 } from '@/components/animations';
 import { BookOpen, Brain, Users, Zap, Star, Trophy, Target } from 'lucide-react';
 import { useState } from 'react';
@@ -203,6 +204,53 @@ const AnimationDemoPage = () => {
           </div>
         </section>
 
+        {/* Scroll Reveal Demo */}
+        <section className="mb-16">
+          <AnimatedText
+            text="Scroll Reveal Effects"
+            className="text-2xl font-bold mb-8 text-center"
+            animationType="fadeUp"
+            trigger="scroll"
+            stagger={0.1}
+          />
+
+          <div className="space-y-12">
+            <ScrollReveal
+              containerClassName="text-4xl md:text-5xl lg:text-6xl font-bold text-center"
+              textClassName="text-gray-900 dark:text-white"
+              enableBlur={true}
+              baseOpacity={0.2}
+              baseRotation={5}
+              blurStrength={6}
+            >
+              This text reveals with rotation and blur effects as you scroll
+            </ScrollReveal>
+
+            <ScrollReveal
+              element="h3"
+              containerClassName="text-3xl md:text-4xl font-semibold text-center"
+              textClassName="text-blue-600 dark:text-blue-400"
+              enableBlur={false}
+              baseOpacity={0.1}
+              baseRotation={-3}
+            >
+              This one uses only opacity and rotation without blur
+            </ScrollReveal>
+
+            <ScrollReveal
+              element="p"
+              containerClassName="text-xl md:text-2xl text-center max-w-4xl mx-auto"
+              textClassName="text-purple-600 dark:text-purple-400"
+              enableBlur={true}
+              baseOpacity={0.3}
+              baseRotation={2}
+              blurStrength={3}
+            >
+              Each word animates individually creating a beautiful staggered reveal effect that responds to your scroll position in real-time
+            </ScrollReveal>
+          </div>
+        </section>
+
         {/* Usage Instructions */}
         <section>
           <AnimatedText
@@ -226,6 +274,7 @@ const AnimationDemoPage = () => {
                 <li><strong>AnimatedHeader:</strong> For page headers with background effects</li>
                 <li><strong>AnimatedCard:</strong> For content cards with entrance animations</li>
                 <li><strong>LoadingScreen:</strong> For full-screen loading experiences</li>
+                <li><strong>ScrollReveal:</strong> For scroll-triggered word-by-word reveals with rotation and blur</li>
               </ul>
               <p>
                 All components support customizable timing, easing, and animation types.

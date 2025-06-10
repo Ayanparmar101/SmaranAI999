@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import DoodleButton from '@/components/DoodleButton';
 import { BookOpen, Brain, Users, Zap } from 'lucide-react';
-import { AnimatedText, AnimatedCard } from '@/components/animations';
+import { AnimatedText, AnimatedCard, ScrollReveal } from '@/components/animations';
 import { gsap } from 'gsap';
 
 const LandingHeroSection = () => {
@@ -211,6 +211,32 @@ const LandingHeroSection = () => {
               </div>
             </div>
           </div>
+        </div>
+
+        {/* Scroll Reveal Section */}
+        <div className="mt-24 text-center">
+          <ScrollReveal
+            element="h2"
+            containerClassName="text-3xl md:text-4xl lg:text-5xl font-bold mb-8"
+            textClassName="text-gray-900 dark:text-white"
+            enableBlur={true}
+            baseOpacity={0.2}
+            baseRotation={3}
+            blurStrength={4}
+          >
+            Experience the Future of Learning
+          </ScrollReveal>
+
+          <ScrollReveal
+            element="p"
+            containerClassName="text-lg md:text-xl max-w-3xl mx-auto"
+            textClassName="text-muted-foreground"
+            enableBlur={false}
+            baseOpacity={0.3}
+            baseRotation={-2}
+          >
+            Join thousands of students who are already transforming their educational journey with our AI-powered platform
+          </ScrollReveal>
         </div>
       </div>
     </section>

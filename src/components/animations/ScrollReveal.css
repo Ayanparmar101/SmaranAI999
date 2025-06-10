@@ -1,0 +1,40 @@
+.scroll-reveal {
+  overflow: hidden;
+  will-change: transform;
+}
+
+.scroll-reveal-text {
+  margin: 0;
+  line-height: 1.2;
+  overflow: hidden;
+}
+
+.word {
+  display: inline-block;
+  will-change: opacity, filter;
+  transition: opacity 0.1s ease, filter 0.1s ease;
+}
+
+/* Ensure proper spacing between words */
+.word + .word {
+  margin-left: 0.25em;
+}
+
+/* Performance optimizations */
+.scroll-reveal * {
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Accessibility: Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal {
+    transform: none !important;
+  }
+  
+  .word {
+    opacity: 1 !important;
+    filter: none !important;
+    transition: none !important;
+  }
+}
