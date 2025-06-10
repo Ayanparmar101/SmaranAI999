@@ -1,15 +1,16 @@
 import React from 'react';
 import DoodleCard from '@/components/DoodleCard';
-import { 
-  BookOpen, 
-  Calendar, 
-  Mic, 
-  FileText, 
-  Users, 
-  HelpCircle, 
-  Image, 
-  Bot, 
-  Clock, 
+import { ScrollReveal, AnimatedCard } from '@/components/animations';
+import {
+  BookOpen,
+  Calendar,
+  Mic,
+  FileText,
+  Users,
+  HelpCircle,
+  Image,
+  Bot,
+  Clock,
   Calculator,
   MessageSquare,
   Brain,
@@ -124,11 +125,25 @@ const LandingFeaturesSection = () => {
           <div className="inline-block px-4 py-2 bg-kid-blue/10 text-kid-blue rounded-full text-sm font-medium mb-4">
             🎯 Complete Learning Ecosystem
           </div>
-          <h2 className="section-title">Everything You Need to Excel</h2>
-          <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Our comprehensive platform combines cutting-edge AI technology with proven educational methods 
-            to create the ultimate learning experience for students and educators.
-          </p>
+          <ScrollReveal
+            element="h2"
+            containerClassName="section-title"
+            enableBlur={true}
+            baseOpacity={0.2}
+            baseRotation={2}
+            blurStrength={3}
+          >
+            Everything You Need to Excel
+          </ScrollReveal>
+          <ScrollReveal
+            element="p"
+            containerClassName="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed"
+            enableBlur={false}
+            baseOpacity={0.3}
+            baseRotation={-1}
+          >
+            Our comprehensive platform combines cutting-edge AI technology with proven educational methods to create the ultimate learning experience for students and educators.
+          </ScrollReveal>
         </div>
 
         {/* Category Overview */}
@@ -146,32 +161,59 @@ const LandingFeaturesSection = () => {
         {/* Features Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12">
           {features.map((feature, index) => (
-            <DoodleCard
+            <AnimatedCard
               key={index}
               title={feature.title}
-              description={feature.description}
-              icon={feature.icon}
-              color={feature.color}
+              content={feature.description}
               className="h-full"
+              delay={index * 0.1}
+              animationType="fadeUp"
+              hoverEffect={true}
+              glowEffect={true}
             >
+              <div className="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-xl mb-4">
+                {feature.icon}
+              </div>
               <div className="mt-4 pt-4 border-t border-border/50">
                 <span className="text-xs text-muted-foreground bg-muted/50 px-2 py-1 rounded-full">
                   {feature.category}
                 </span>
               </div>
-            </DoodleCard>
+            </AnimatedCard>
           ))}
         </div>
 
         {/* Key Highlights */}
         <div className="bg-gradient-to-r from-kid-blue/5 to-kid-purple/5 rounded-3xl p-8 border-4 border-dashed border-kid-blue/20">
           <div className="text-center mb-8">
-            <h3 className="text-2xl sm:text-3xl font-bold mb-4">Why Choose Smaran.ai?</h3>
-            <p className="text-muted-foreground">Built for the modern learner with cutting-edge technology</p>
+            <ScrollReveal
+              element="h3"
+              containerClassName="text-2xl sm:text-3xl font-bold mb-4"
+              enableBlur={true}
+              baseOpacity={0.2}
+              baseRotation={3}
+              blurStrength={4}
+            >
+              Why Choose Smaran.ai?
+            </ScrollReveal>
+            <ScrollReveal
+              element="p"
+              containerClassName="text-muted-foreground"
+              enableBlur={false}
+              baseOpacity={0.3}
+              baseRotation={-1}
+            >
+              Built for the modern learner with cutting-edge technology
+            </ScrollReveal>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center">
+            <AnimatedCard
+              className="text-center border-none bg-transparent shadow-none"
+              delay={0.2}
+              animationType="fadeUp"
+              hoverEffect={true}
+            >
               <div className="w-16 h-16 bg-kid-blue/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Brain className="w-8 h-8 text-kid-blue" />
               </div>
@@ -179,9 +221,14 @@ const LandingFeaturesSection = () => {
               <p className="text-sm text-muted-foreground">
                 Advanced machine learning algorithms adapt to your learning style and pace
               </p>
-            </div>
-            
-            <div className="text-center">
+            </AnimatedCard>
+
+            <AnimatedCard
+              className="text-center border-none bg-transparent shadow-none"
+              delay={0.4}
+              animationType="fadeUp"
+              hoverEffect={true}
+            >
               <div className="w-16 h-16 bg-kid-green/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Target className="w-8 h-8 text-kid-green" />
               </div>
@@ -189,9 +236,14 @@ const LandingFeaturesSection = () => {
               <p className="text-sm text-muted-foreground">
                 Customized study plans and content recommendations based on your progress
               </p>
-            </div>
-            
-            <div className="text-center">
+            </AnimatedCard>
+
+            <AnimatedCard
+              className="text-center border-none bg-transparent shadow-none"
+              delay={0.6}
+              animationType="fadeUp"
+              hoverEffect={true}
+            >
               <div className="w-16 h-16 bg-kid-purple/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Award className="w-8 h-8 text-kid-purple" />
               </div>
@@ -199,7 +251,7 @@ const LandingFeaturesSection = () => {
               <p className="text-sm text-muted-foreground">
                 Track your progress with detailed analytics and achievement systems
               </p>
-            </div>
+            </AnimatedCard>
           </div>
         </div>
       </div>

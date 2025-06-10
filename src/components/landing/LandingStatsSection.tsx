@@ -1,4 +1,5 @@
 import { TrendingUp, Users, BookOpen, Clock, Award, Zap } from 'lucide-react';
+import { ScrollReveal, AnimatedCard } from '@/components/animations';
 
 const LandingStatsSection = () => {
   const stats = [
@@ -60,18 +61,39 @@ const LandingStatsSection = () => {
           <div className="inline-block px-4 py-2 bg-kid-green/10 text-kid-green rounded-full text-sm font-medium mb-4">
             📊 Proven Impact & Results
           </div>
-          <h2 className="section-title">Numbers That Speak Success</h2>
-          <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Our platform delivers measurable results that transform learning outcomes. 
-            See how students worldwide are achieving their educational goals with Smaran.ai.
-          </p>
+          <ScrollReveal
+            element="h2"
+            containerClassName="section-title"
+            enableBlur={true}
+            baseOpacity={0.2}
+            baseRotation={2}
+            blurStrength={3}
+          >
+            Numbers That Speak Success
+          </ScrollReveal>
+          <ScrollReveal
+            element="p"
+            containerClassName="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed"
+            enableBlur={false}
+            baseOpacity={0.3}
+            baseRotation={-1}
+          >
+            Our platform delivers measurable results that transform learning outcomes. See how students worldwide are achieving their educational goals with Smaran.ai.
+          </ScrollReveal>
         </div>
 
         {/* Main Stats Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
           {stats.map((stat, index) => (
-            <div key={index} className="card-doodle text-center group hover:scale-105 transition-all duration-300">
-              <div className={`${stat.bgColor} w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300`}>
+            <AnimatedCard
+              key={index}
+              className="text-center"
+              delay={index * 0.15}
+              animationType="fadeUp"
+              hoverEffect={true}
+              glowEffect={true}
+            >
+              <div className={`${stat.bgColor} w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4`}>
                 <div className={stat.color}>
                   {stat.icon}
                 </div>
@@ -81,7 +103,7 @@ const LandingStatsSection = () => {
               </div>
               <h3 className="text-lg font-semibold mb-2">{stat.label}</h3>
               <p className="text-sm text-muted-foreground">{stat.description}</p>
-            </div>
+            </AnimatedCard>
           ))}
         </div>
       </div>

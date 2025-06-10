@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import DoodleButton from '@/components/DoodleButton';
 import { ArrowRight, Sparkles, Target, Zap, BookOpen, Users, Award } from 'lucide-react';
+import { ScrollReveal, AnimatedCard } from '@/components/animations';
 
 const LandingCallToAction = () => {
   const navigate = useNavigate();
@@ -49,28 +50,44 @@ const LandingCallToAction = () => {
             🎯 Limited Time: Free Access to All Premium Features
           </div>
           
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-            <span className="block text-foreground">Ready to Transform</span>
-            <span className="gradient-text-animated-slow">
-              Your Learning?
-            </span>
-          </h2>
-          
-          <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed mb-8">
-            Join thousands of students who are already achieving their academic goals with our AI-powered platform. 
-            Start your journey to academic excellence today – completely free!
-          </p>
+          <ScrollReveal
+            element="h2"
+            containerClassName="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
+            enableBlur={true}
+            baseOpacity={0.2}
+            baseRotation={3}
+            blurStrength={5}
+          >
+            Ready to Transform Your Learning?
+          </ScrollReveal>
+
+          <ScrollReveal
+            element="p"
+            containerClassName="text-lg sm:text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed mb-8"
+            enableBlur={false}
+            baseOpacity={0.3}
+            baseRotation={-1}
+          >
+            Join thousands of students who are already achieving their academic goals with our AI-powered platform. Start your journey to academic excellence today – completely free!
+          </ScrollReveal>
 
           {/* Urgency Features */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10 max-w-4xl mx-auto">
             {urgencyFeatures.map((feature, index) => (
-              <div key={index} className="bg-background/80 backdrop-blur rounded-2xl p-6 border-2 border-border shadow-lg">
+              <AnimatedCard
+                key={index}
+                className="bg-background/80 backdrop-blur border-2 border-border"
+                delay={index * 0.2}
+                animationType="fadeUp"
+                hoverEffect={true}
+                glowEffect={true}
+              >
                 <div className="text-kid-blue mb-3 flex justify-center">
                   {feature.icon}
                 </div>
                 <h3 className="font-bold mb-2">{feature.title}</h3>
                 <p className="text-sm text-muted-foreground">{feature.description}</p>
-              </div>
+              </AnimatedCard>
             ))}
           </div>
 
@@ -101,7 +118,7 @@ const LandingCallToAction = () => {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6 text-sm text-muted-foreground">
             <div className="flex items-center gap-2">
               <Users className="w-4 h-4 text-kid-green" />
-              <span>10,000+ Active Students</span>
+              <span>100+ Active Students</span>
             </div>
             <div className="flex items-center gap-2">
               <Award className="w-4 h-4 text-kid-yellow" />

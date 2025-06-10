@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import DoodleButton from '@/components/DoodleButton';
-import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Mail, Lock, LogIn, UserPlus, ArrowRight, CheckCircle } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { toast } from 'sonner';
+import { ScrollReveal, AnimatedCard } from '@/components/animations';
 
 const LandingAuthSection = () => {
   const navigate = useNavigate();
@@ -57,11 +57,25 @@ const LandingAuthSection = () => {
           <div className="inline-block px-4 py-2 bg-kid-purple/10 text-kid-purple rounded-full text-sm font-medium mb-4">
             🚀 Get Started Today
           </div>
-          <h2 className="section-title">Join Thousands of Successful Learners</h2>
-          <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Create your free account in seconds and unlock the full potential of AI-powered learning. 
-            No credit card required, start learning immediately.
-          </p>
+          <ScrollReveal
+            element="h2"
+            containerClassName="section-title"
+            enableBlur={true}
+            baseOpacity={0.2}
+            baseRotation={2}
+            blurStrength={3}
+          >
+            Join Thousands of Successful Learners
+          </ScrollReveal>
+          <ScrollReveal
+            element="p"
+            containerClassName="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed"
+            enableBlur={false}
+            baseOpacity={0.3}
+            baseRotation={-1}
+          >
+            Create your free account in seconds and unlock the full potential of AI-powered learning. No credit card required, start learning immediately.
+          </ScrollReveal>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
@@ -118,7 +132,13 @@ const LandingAuthSection = () => {
 
           {/* Auth Form Column */}
           <div className="flex justify-center">
-            <Card className="w-full max-w-md p-8 shadow-xl border-4 border-dashed border-kid-blue/30">
+            <AnimatedCard
+              className="w-full max-w-md border-4 border-dashed border-kid-blue/30"
+              delay={0.3}
+              animationType="fadeUp"
+              hoverEffect={true}
+              glowEffect={true}
+            >
               <div className="text-center mb-6">
                 <h3 className="text-2xl font-bold mb-2">
                   {isSignUp ? 'Create Your Free Account' : 'Welcome Back!'}
@@ -196,7 +216,7 @@ const LandingAuthSection = () => {
                   Your data is secure and never shared.
                 </div>
               )}
-            </Card>
+            </AnimatedCard>
           </div>
         </div>
       </div>
