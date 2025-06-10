@@ -4,7 +4,8 @@ import {
   AnimatedHeader,
   AnimatedCard,
   LoadingScreen,
-  ScrollReveal
+  ScrollReveal,
+  CountUp
 } from '@/components/animations';
 import { BookOpen, Brain, Users, Zap, Star, Trophy, Target } from 'lucide-react';
 import { useState } from 'react';
@@ -204,6 +205,58 @@ const AnimationDemoPage = () => {
           </div>
         </section>
 
+        {/* CountUp Demo */}
+        <section className="mb-16">
+          <AnimatedText
+            text="CountUp Animations"
+            className="text-2xl font-bold mb-8 text-center"
+            animationType="fadeUp"
+            trigger="scroll"
+            stagger={0.1}
+          />
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            <AnimatedCard
+              className="text-center"
+              delay={0.2}
+              animationType="fadeUp"
+              hoverEffect={true}
+            >
+              <div className="text-4xl font-bold text-blue-600 mb-2">
+                <CountUp to={1000} duration={2} separator="," />+
+              </div>
+              <h3 className="text-lg font-semibold mb-2">Happy Users</h3>
+              <p className="text-gray-600 dark:text-gray-300">Growing every day</p>
+            </AnimatedCard>
+
+            <AnimatedCard
+              className="text-center"
+              delay={0.4}
+              animationType="fadeUp"
+              hoverEffect={true}
+            >
+              <div className="text-4xl font-bold text-green-600 mb-2">
+                <CountUp to={95} duration={2.5} />%
+              </div>
+              <h3 className="text-lg font-semibold mb-2">Success Rate</h3>
+              <p className="text-gray-600 dark:text-gray-300">Proven results</p>
+            </AnimatedCard>
+
+            <AnimatedCard
+              className="text-center"
+              delay={0.6}
+              animationType="fadeUp"
+              hoverEffect={true}
+            >
+              <div className="text-4xl font-bold text-purple-600 mb-2">
+                <CountUp to={50000} duration={3} separator="," />+
+              </div>
+              <h3 className="text-lg font-semibold mb-2">Study Sessions</h3>
+              <p className="text-gray-600 dark:text-gray-300">Completed successfully</p>
+            </AnimatedCard>
+          </div>
+        </section>
+
         {/* Scroll Reveal Demo */}
         <section className="mb-16">
           <AnimatedText
@@ -275,6 +328,7 @@ const AnimationDemoPage = () => {
                 <li><strong>AnimatedCard:</strong> For content cards with entrance animations</li>
                 <li><strong>LoadingScreen:</strong> For full-screen loading experiences</li>
                 <li><strong>ScrollReveal:</strong> For scroll-triggered word-by-word reveals with rotation and blur</li>
+                <li><strong>CountUp:</strong> For animated number counting with Framer Motion springs</li>
               </ul>
               <p>
                 All components support customizable timing, easing, and animation types.

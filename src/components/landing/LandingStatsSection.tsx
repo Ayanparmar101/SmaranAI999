@@ -1,10 +1,12 @@
 import { TrendingUp, Users, BookOpen, Clock, Award, Zap } from 'lucide-react';
-import { ScrollReveal, AnimatedCard } from '@/components/animations';
+import { ScrollReveal, AnimatedCard, CountUp } from '@/components/animations';
 
 const LandingStatsSection = () => {
   const stats = [
     {
       number: "100+",
+      countValue: 100,
+      suffix: "+",
       label: "Active Students",
       description: "Learning daily across the Gujarat",
       icon: <Users className="w-8 h-8" />,
@@ -13,6 +15,8 @@ const LandingStatsSection = () => {
     },
     {
       number: "95%",
+      countValue: 95,
+      suffix: "%",
       label: "Improvement Rate",
       description: "Students see grade improvements",
       icon: <TrendingUp className="w-8 h-8" />,
@@ -21,6 +25,8 @@ const LandingStatsSection = () => {
     },
     {
       number: "2K+",
+      countValue: 2000,
+      suffix: "+",
       label: "Flashcards Created",
       description: "AI-generated learning content",
       icon: <BookOpen className="w-8 h-8" />,
@@ -29,6 +35,8 @@ const LandingStatsSection = () => {
     },
     {
       number: "1k+",
+      countValue: 1000,
+      suffix: "+",
       label: "Study Hours",
       description: "Tracked learning time",
       icon: <Clock className="w-8 h-8" />,
@@ -37,6 +45,8 @@ const LandingStatsSection = () => {
     },
     {
       number: "20+",
+      countValue: 20,
+      suffix: "+",
       label: "Learning Tools",
       description: "Comprehensive feature set",
       icon: <Zap className="w-8 h-8" />,
@@ -45,6 +55,8 @@ const LandingStatsSection = () => {
     },
     {
       number: "98%",
+      countValue: 98,
+      suffix: "%",
       label: "User Satisfaction",
       description: "Students love our platform",
       icon: <Award className="w-8 h-8" />,
@@ -99,7 +111,14 @@ const LandingStatsSection = () => {
                 </div>
               </div>
               <div className="text-3xl sm:text-4xl font-bold mb-2 bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent">
-                {stat.number}
+                <CountUp
+                  to={stat.countValue}
+                  duration={2.5}
+                  delay={index * 0.2}
+                  separator=","
+                  className="inline"
+                />
+                {stat.suffix}
               </div>
               <h3 className="text-lg font-semibold mb-2">{stat.label}</h3>
               <p className="text-sm text-muted-foreground">{stat.description}</p>
