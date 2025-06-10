@@ -1,0 +1,33 @@
+rules_version = '2';
+
+// Secure Firebase Storage Rules
+service firebase.storage {
+  match /b/{bucket}/o {
+    // Allow read access to public educational content only
+    match /standard8/{allPaths=**} {
+      allow read: if request.auth != null; // Require authentication even for public content
+    }
+
+    // Secure syllabus directory - authenticated users only
+    match /syllabus/{allPaths=**} {
+      allow read: if request.auth != null;
+      // Only allow uploads of specific file types and size limits
+      allow write: if request.auth != null &&
+                     request.resource.size < 50 * 1024 * 1024 && // 50MB limit
+                     request.resource.contentType.matches('application/pdf|image/.*');
+    }
+
+    // User-specific directories - users can only access their own files
+    match /users/{userId}/{allPaths=**} {
+      allow read, write: if request.auth != null &&
+                           request.auth.uid == userId &&
+                           request.resource.size < 20 * 1024 * 1024 && // 20MB limit for user files
+                           request.resource.contentType.matches('application/pdf|image/.*|text/.*');
+    }
+
+    // Deny all other access
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

@@ -1,0 +1,90 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Secure message access - users can only access their own messages
+    match /messages/{messageId} {
+      // Users can only read their own messages
+      allow read: if request.auth != null && request.auth.uid == resource.data.userId;
+      // Users can only create messages with their own userId
+      allow create: if request.auth != null &&
+                      request.auth.uid == request.resource.data.userId &&
+                      validateMessageData(request.resource.data);
+      // Users can only update their own messages
+      allow update: if request.auth != null &&
+                      request.auth.uid == resource.data.userId &&
+                      validateMessageData(request.resource.data);
+      // Users can only delete their own messages
+      allow delete: if request.auth != null && request.auth.uid == resource.data.userId;
+    }    // Allow users to read and write their own profiles
+    match /profiles/{userId} {
+      allow read: if request.auth != null && request.auth.uid == userId;
+      allow write: if request.auth != null && request.auth.uid == userId && request.resource.data.username.size() <= 15;
+    }    // Secure flashcard sets - users can only access their own sets
+    match /flashcardSets/{setId} {
+      // Users can only read their own flashcard sets
+      allow read: if request.auth != null && request.auth.uid == resource.data.userId;
+      // Users can only create sets with their own userId and valid data
+      allow create: if request.auth != null &&
+                      request.auth.uid == request.resource.data.userId &&
+                      validateFlashcardSetData(request.resource.data);
+      // Users can only update/delete their own sets
+      allow update, delete: if request.auth != null &&
+                              request.auth.uid == resource.data.userId &&
+                              validateFlashcardSetData(request.resource.data);
+    }    // Secure time tracking data - users can only access their own data
+    match /timeTracking/{userId} {
+      // Users can only access their own time tracking data
+      allow read, write, create, update: if request.auth != null &&
+                                           request.auth.uid == userId &&
+                                           validateTimeTrackingData(request.resource.data);
+      // No delete allowed for time tracking data to preserve history
+    }
+
+    // Secure study sessions - users can only access their own sessions
+    match /studySessions/{sessionId} {
+      // Users can only read their own study sessions
+      allow read: if request.auth != null && request.auth.uid == resource.data.userId;
+      // Users can only create sessions with their own userId and valid data
+      allow create: if request.auth != null &&
+                      request.auth.uid == request.resource.data.userId &&
+                      validateStudySessionData(request.resource.data);
+      // Users can only update/delete their own sessions
+      allow update, delete: if request.auth != null &&
+                              request.auth.uid == resource.data.userId &&
+                              validateStudySessionData(request.resource.data);
+    }
+
+    // Validation functions for data integrity
+    function validateMessageData(data) {
+      return data.keys().hasAll(['text', 'userId', 'chatType']) &&
+             data.text is string &&
+             data.text.size() <= 10000 && // Limit message size
+             data.userId is string &&
+             data.chatType is string;
+    }
+
+    function validateFlashcardSetData(data) {
+      return data.keys().hasAll(['userId', 'title']) &&
+             data.userId is string &&
+             data.title is string &&
+             data.title.size() <= 200; // Limit title size
+    }
+
+    function validateTimeTrackingData(data) {
+      return data.keys().hasAny(['totalTimeSpent', 'todayTime', 'thisWeekTime', 'thisMonthTime']) &&
+             (data.get('totalTimeSpent', 0) is number) &&
+             (data.get('todayTime', 0) is number) &&
+             (data.get('thisWeekTime', 0) is number) &&
+             (data.get('thisMonthTime', 0) is number);
+    }
+
+    function validateStudySessionData(data) {
+      return data.keys().hasAll(['userId', 'score']) &&
+             data.userId is string &&
+             data.score is number &&
+             data.score >= 0 &&
+             data.score <= 100;
+    }
+  }
+}

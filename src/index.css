@@ -1,0 +1,652 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 60 100% 98%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 210 100% 64%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 130 64% 65%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 346 100% 71%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 1rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 240 10% 10%;
+    --foreground: 210 40% 98%;
+
+    --card: 240 10% 13%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 240 10% 8%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 100% 58%;
+    --primary-foreground: 220 15% 90%;
+
+    --secondary: 130 50% 50%;
+    --secondary-foreground: 220 15% 90%;
+
+    --muted: 240 10% 18%;
+    --muted-foreground: 240 5% 65%;
+
+    --accent: 346 80% 65%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 50.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 10% 20%;
+    --input: 240 10% 20%;
+    --ring: 240 10% 40%;
+
+    --sidebar-background: 240 10% 8%;
+    --sidebar-foreground: 240 10% 80%;
+    --sidebar-primary: 240 10% 85%;
+    --sidebar-primary-foreground: 240 10% 10%;
+    --sidebar-accent: 240 10% 15%;
+    --sidebar-accent-foreground: 240 10% 80%;
+    --sidebar-border: 240 10% 20%;
+    --sidebar-ring: 240 10% 50%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans transition-colors duration-300;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+
+
+
+
+  /* Gradient Animation Keyframes */
+  @keyframes gradient-flow {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  @keyframes gradient-shift {
+    0% {
+      filter: hue-rotate(0deg);
+    }
+    25% {
+      filter: hue-rotate(5deg);
+    }
+    50% {
+      filter: hue-rotate(0deg);
+    }
+    75% {
+      filter: hue-rotate(-5deg);
+    }
+    100% {
+      filter: hue-rotate(0deg);
+    }
+  }
+
+  /* Animated Gradient Text Classes */
+  .gradient-text-animated {
+    background: linear-gradient(
+      45deg,
+      #4E9BF5,
+      #B07CF8,
+      #FF7568,
+      #4E9BF5,
+      #B07CF8,
+      #FF7568
+    );
+    background-size: 300% 300%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-flow 4s ease-in-out infinite;
+  }
+
+  .gradient-text-animated-fast {
+    background: linear-gradient(
+      45deg,
+      #4E9BF5,
+      #B07CF8,
+      #FF7568,
+      #4E9BF5,
+      #B07CF8,
+      #FF7568
+    );
+    background-size: 300% 300%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-flow 2.5s ease-in-out infinite;
+  }
+
+  .gradient-text-animated-slow {
+    background: linear-gradient(
+      45deg,
+      #4E9BF5,
+      #B07CF8,
+      #FF7568,
+      #4E9BF5,
+      #B07CF8,
+      #FF7568
+    );
+    background-size: 300% 300%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-flow 6s ease-in-out infinite;
+  }
+
+  /* Special gradient for Gujarati (red-orange theme) */
+  .gradient-text-animated-gujarati {
+    background: linear-gradient(
+      45deg,
+      #FF7568,
+      #EF4444,
+      #F97316,
+      #FF7568,
+      #EF4444,
+      #F97316
+    );
+    background-size: 300% 300%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-flow 6s ease-in-out infinite;
+  }
+
+  /* Respect user's motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    .gradient-text-animated,
+    .gradient-text-animated-fast,
+    .gradient-text-animated-slow,
+    .gradient-text-animated-gujarati {
+      animation: none;
+      background: linear-gradient(45deg, #4E9BF5, #B07CF8, #FF7568);
+      background-size: 100% 100%;
+    }
+
+    .gradient-text-animated-gujarati {
+      background: linear-gradient(45deg, #FF7568, #EF4444, #F97316);
+    }
+  }
+
+  /* Neobrutalism specific styles */
+  .border-3 {
+    border-width: 3px;
+  }
+
+  .shadow-neo-sm {
+    box-shadow: 3px 3px 0 0 #000;
+  }
+
+  .shadow-neo-md {
+    box-shadow: 5px 5px 0 0 #000;
+  }
+
+  .shadow-neo-lg {
+    box-shadow: 7px 7px 0 0 #000;
+  }
+
+  .shadow-neo {
+    box-shadow: 5px 5px 0 0 #000;
+  }
+
+  /* Dark mode neobrutalism shadows */
+  .dark .shadow-neo-sm {
+    box-shadow: 3px 3px 0 0 hsl(var(--border));
+  }
+
+  .dark .shadow-neo-md {
+    box-shadow: 5px 5px 0 0 hsl(var(--border));
+  }
+
+  .dark .shadow-neo-lg {
+    box-shadow: 7px 7px 0 0 hsl(var(--border));
+  }
+
+  .dark .shadow-neo {
+    box-shadow: 5px 5px 0 0 hsl(var(--border));
+  }
+
+  /* The rest of the existing styles */
+  .dark .prose {
+    color: hsl(var(--card-foreground));
+  }
+
+  .dark input, .dark textarea {
+    @apply bg-muted text-foreground border-border;
+  }
+
+  .dark .bg-white {
+    @apply bg-card text-card-foreground;
+  }
+
+  .dark .bg-gray-50, .dark .bg-gray-100 {
+    @apply bg-muted text-foreground;
+  }
+
+  .dark .bg-yellow-50 {
+    @apply bg-yellow-950/20 border-yellow-800/30;
+  }
+
+  /* Flashcard specific dark mode styles */
+  .dark .flashcard-difficulty-easy {
+    @apply bg-green-900/30 text-green-300 border-green-700;
+  }
+
+  .dark .flashcard-difficulty-medium {
+    @apply bg-yellow-900/30 text-yellow-300 border-yellow-700;
+  }
+
+  .dark .flashcard-difficulty-hard {
+    @apply bg-red-900/30 text-red-300 border-red-700;
+  }
+
+  .dark .flashcard-stats-blue {
+    @apply bg-blue-950/30 border-blue-700;
+  }
+
+  .dark .flashcard-stats-green {
+    @apply bg-green-950/30 border-green-700;
+  }
+
+  .dark .flashcard-stats-purple {
+    @apply bg-purple-950/30 border-purple-700;
+  }
+  
+  .dark .text-yellow-700, .dark .text-yellow-800 {
+    @apply text-yellow-400/80;
+  }
+
+  .dark .bg-blue-50 {
+    @apply bg-blue-950/20 border-blue-800/30;
+  }
+  
+  .dark .text-blue-700, .dark .text-blue-800 {
+    @apply text-blue-400/80;
+  }
+
+  .dark .text-gray-600, .dark .text-gray-700, .dark .text-gray-800 {
+    @apply text-muted-foreground;
+  }
+
+  .dark .text-gray-400, .dark .text-gray-500 {
+    @apply text-muted-foreground/70;
+  }
+
+  .dark .card-doodle {
+    @apply bg-card text-card-foreground border-opacity-50;
+  }
+  
+  /* Dark mode gradient overrides */
+  .dark .gradient-white-override {
+    background: linear-gradient(to bottom right, hsl(var(--muted)), hsl(var(--background)));
+  }
+
+  .dark .gradient-kid-blue-override {
+    background: linear-gradient(to right, hsl(var(--kid-blue) / 0.2), hsl(var(--kid-purple) / 0.2));
+  }
+  
+  .dark .bg-green-100 {
+    @apply bg-green-950/30;
+  }
+  
+  .dark .bg-yellow-100 {
+    @apply bg-yellow-950/30;
+  }
+  
+  .dark .bg-red-100 {
+    @apply bg-red-950/30;
+  }
+  
+  .dark .bg-purple-100 {
+    @apply bg-purple-950/30;
+  }
+  
+  .dark .bg-orange-100 {
+    @apply bg-orange-950/30;
+  }
+  
+  .dark .bg-pink-100 {
+    @apply bg-pink-950/30;
+  }
+
+  /* Teacher Tools specific dark mode styles */
+  .dark .neo-input {
+    @apply bg-muted text-foreground border-border;
+  }
+
+  .dark .neo-card {
+    @apply bg-card text-card-foreground border-border;
+  }
+
+  .dark .neo-button {
+    @apply bg-card text-card-foreground border-border hover:bg-muted;
+  }
+}
+
+@layer components {
+  .doodle-border {
+    @apply border-4 border-dashed rounded-2xl p-6;
+  }
+  
+  .page-container {
+    @apply container max-w-6xl mx-auto px-4 py-6 sm:py-8 text-center sm:text-left;
+  }
+
+  .card-doodle {
+    @apply bg-card rounded-2xl p-4 sm:p-6 shadow-lg border-4 border-dashed transition-all duration-300 hover:shadow-xl text-card-foreground;
+  }
+
+  .section-title {
+    @apply text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 text-center relative leading-tight;
+  }
+  
+  .section-title::after {
+    content: "";
+    @apply absolute bottom-0 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-kid-yellow rounded-full;
+  }
+
+  /* Neobrutalism specific components */
+  .neo-card {
+    @apply bg-card text-card-foreground border-3 border-border p-6 rounded-md shadow-neo transition-all duration-200;
+  }
+
+  .neo-card:hover {
+    @apply shadow-neo-lg;
+  }
+
+  /* 3D Flashcard Animation Components */
+  .flashcard-container {
+    perspective: 1000px;
+    width: 100%;
+    min-height: 250px;
+    height: auto;
+  }
+
+  @media (min-width: 640px) {
+    .flashcard-container {
+      min-height: 300px;
+    }
+  }
+
+  .flashcard-inner {
+    position: relative;
+    width: 100%;
+    min-height: 250px;
+    height: auto;
+    transition: transform 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+    transform-style: preserve-3d;
+    cursor: pointer;
+  }
+
+  @media (min-width: 640px) {
+    .flashcard-inner {
+      min-height: 300px;
+    }
+  }
+
+  .flashcard-inner:hover {
+    transform: scale(1.02);
+  }
+
+  .flashcard-inner.flipped {
+    transform: rotateY(180deg);
+  }
+
+  .flashcard-inner.flipped:hover {
+    transform: rotateY(180deg) scale(1.02);
+  }
+
+  .flashcard-face {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: inherit;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition: box-shadow 0.3s ease;
+    overflow: hidden;
+  }
+
+  .flashcard-front {
+    z-index: 2;
+    transform: rotateY(0deg);
+  }
+
+  .flashcard-back {
+    transform: rotateY(180deg);
+  }
+
+
+
+  /* Accessibility: Respect reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    .flashcard-inner {
+      transition: none;
+    }
+
+    .flashcard-inner:hover {
+      transform: none;
+    }
+
+    .flashcard-inner.flipped {
+      transform: none;
+    }
+
+    .flashcard-inner.flipped:hover {
+      transform: none;
+    }
+
+    .flashcard-face {
+      backface-visibility: visible;
+      transition: none;
+      position: relative;
+    }
+
+    .flashcard-back {
+      transform: none;
+      display: none;
+      position: relative;
+    }
+
+    .flashcard-inner.flipped .flashcard-front {
+      display: none;
+    }
+
+    .flashcard-inner.flipped .flashcard-back {
+      display: block;
+      position: relative;
+    }
+
+  }
+  
+  .neo-input {
+    @apply bg-card text-card-foreground border-3 border-border rounded-md px-4 py-2 shadow-neo-sm focus:outline-none focus:shadow-none focus:translate-y-1 min-h-[44px];
+  }
+
+  /* Mobile-specific utilities */
+  .mobile-touch-target {
+    @apply min-h-[44px] min-w-[44px];
+  }
+
+  .mobile-text-base {
+    @apply text-base sm:text-sm;
+  }
+
+  .mobile-spacing {
+    @apply p-4 sm:p-6;
+  }
+
+  .mobile-grid {
+    @apply grid-cols-1 sm:grid-cols-2 lg:grid-cols-3;
+  }
+
+  /* Mobile alignment utilities */
+  .mobile-center {
+    @apply text-center sm:text-left;
+  }
+
+  .mobile-center-always {
+    @apply text-center;
+  }
+
+  .mobile-flex-center {
+    @apply flex flex-col sm:flex-row items-center justify-center sm:justify-start;
+  }
+
+  .mobile-button-full {
+    @apply w-full sm:w-auto;
+  }
+
+  /* Flashcard mobile optimizations */
+  .flashcard-mobile-text {
+    @apply text-sm sm:text-base lg:text-lg;
+  }
+
+  .flashcard-mobile-padding {
+    @apply p-4 sm:p-6 lg:p-8;
+  }
+
+  .flashcard-mobile-spacing {
+    @apply space-y-3 sm:space-y-4;
+  }
+
+  .flashcard-mobile-button {
+    @apply min-h-[44px] text-sm sm:text-base;
+  }
+
+  /* Mobile touch improvements for flashcards */
+  @media (max-width: 640px) {
+    .flashcard-inner:hover {
+      transform: none;
+    }
+
+    .flashcard-inner.flipped:hover {
+      transform: rotateY(180deg);
+    }
+  }
+
+  /* Teacher tools mobile optimizations */
+  .teacher-mobile-header {
+    @apply flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4;
+  }
+
+  .teacher-mobile-icon {
+    @apply p-2 sm:p-3 rounded-lg border flex-shrink-0;
+  }
+
+  .teacher-mobile-title {
+    @apply text-lg sm:text-xl lg:text-2xl;
+  }
+
+  .teacher-mobile-description {
+    @apply text-sm sm:text-base mt-1;
+  }
+
+  .teacher-mobile-container {
+    @apply px-3 sm:px-4 py-4 sm:py-8;
+  }
+
+  .teacher-mobile-card {
+    @apply mb-4 sm:mb-6;
+  }
+
+  .teacher-mobile-grid {
+    @apply grid grid-cols-1 gap-4 sm:gap-6;
+  }
+
+  .teacher-mobile-button {
+    @apply min-h-[44px] text-sm sm:text-base;
+  }
+
+  .teacher-mobile-input {
+    @apply min-h-[48px] text-sm sm:text-base;
+  }
+
+  /* Custom Scrollbar Styles for Sidebar */
+  .sidebar-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--muted-foreground) / 0.3) transparent;
+    scroll-behavior: smooth;
+  }
+
+  .sidebar-scroll::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .sidebar-scroll::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 4px;
+  }
+
+  .sidebar-scroll::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted-foreground) / 0.3);
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+  }
+
+  .sidebar-scroll::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground) / 0.5);
+  }
+
+  /* Dark mode scrollbar adjustments */
+  .dark .sidebar-scroll {
+    scrollbar-color: hsl(var(--muted-foreground) / 0.4) transparent;
+  }
+
+  .dark .sidebar-scroll::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted-foreground) / 0.4);
+  }
+
+  .dark .sidebar-scroll::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground) / 0.6);
+  }
+
+}
