@@ -198,6 +198,19 @@
     animation: gradient-flow 6s ease-in-out infinite;
   }
 
+  /* GSAP Animation Styles */
+  .split-parent {
+    overflow: hidden;
+  }
+
+  .split-line {
+    overflow: hidden;
+  }
+
+  .animated-text {
+    overflow: hidden;
+  }
+
   /* Respect user's motion preferences */
   @media (prefers-reduced-motion: reduce) {
     .gradient-text-animated,
@@ -211,6 +224,13 @@
 
     .gradient-text-animated-gujarati {
       background: linear-gradient(45deg, #FF7568, #EF4444, #F97316);
+    }
+
+    /* Disable GSAP animations for reduced motion */
+    .split-parent,
+    .animated-text {
+      opacity: 1 !important;
+      transform: none !important;
     }
   }
 

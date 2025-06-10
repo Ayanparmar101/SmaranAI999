@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import DoodleButton from '@/components/DoodleButton';
 import { BookOpen, Brain, Users, Zap } from 'lucide-react';
+import { AnimatedText, AnimatedCard } from '@/components/animations';
 
 const LandingHeroSection = () => {
   const navigate = useNavigate();
@@ -35,17 +36,33 @@ const LandingHeroSection = () => {
               </span>
             </div>
             
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-              <span className="block text-foreground">Transform Your</span>
-              <span className="gradient-text-animated-slow">
-                Learning Journey
-              </span>
-            </h1>
-            
-            <p className="text-lg sm:text-xl md:text-2xl mb-8 text-muted-foreground leading-relaxed max-w-2xl mx-auto lg:mx-0">
-              Unlock your potential with our comprehensive AI-powered educational platform. 
-              From interactive flashcards to personalized study plans, we make learning engaging and effective.
-            </p>
+            <div className="mb-6">
+              <AnimatedText
+                text="Transform Your"
+                className="block text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground"
+                animationType="fadeUp"
+                trigger="immediate"
+                delay={0.5}
+                stagger={0.1}
+              />
+              <AnimatedText
+                text="Learning Journey"
+                className="gradient-text-animated-slow text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold"
+                animationType="scale"
+                trigger="immediate"
+                delay={1.2}
+                stagger={0.08}
+              />
+            </div>
+
+            <AnimatedText
+              text="Unlock your potential with our comprehensive AI-powered educational platform. From interactive flashcards to personalized study plans, we make learning engaging and effective."
+              className="text-lg sm:text-xl md:text-2xl mb-8 text-muted-foreground leading-relaxed max-w-2xl mx-auto lg:mx-0"
+              animationType="fadeIn"
+              trigger="immediate"
+              delay={2}
+              stagger={0.02}
+            />
 
             {/* Key Benefits */}
             <div className="grid grid-cols-2 gap-4 mb-8 max-w-md mx-auto lg:mx-0">
@@ -115,26 +132,53 @@ const LandingHeroSection = () => {
               <div className="relative bg-gradient-to-br from-kid-blue/10 to-kid-purple/10 rounded-3xl p-8 border-4 border-dashed border-kid-blue/30">
                 <div className="grid grid-cols-2 gap-4">
                   {/* Feature preview cards */}
-                  <div className="bg-background dark:bg-card rounded-2xl p-4 shadow-lg border-2 border-kid-green">
+                  <AnimatedCard
+                    className="border-2 border-kid-green p-4"
+                    delay={2.5}
+                    animationType="fadeUp"
+                    hoverEffect={true}
+                    glowEffect={true}
+                  >
                     <BookOpen className="w-8 h-8 text-kid-green mb-2" />
                     <h4 className="font-bold text-sm text-foreground">Flashcards</h4>
                     <p className="text-xs text-muted-foreground">Smart learning</p>
-                  </div>
-                  <div className="bg-background dark:bg-card rounded-2xl p-4 shadow-lg border-2 border-kid-purple">
+                  </AnimatedCard>
+
+                  <AnimatedCard
+                    className="border-2 border-kid-purple p-4"
+                    delay={2.7}
+                    animationType="fadeUp"
+                    hoverEffect={true}
+                    glowEffect={true}
+                  >
                     <Brain className="w-8 h-8 text-kid-purple mb-2" />
                     <h4 className="font-bold text-sm text-foreground">AI Tutor</h4>
                     <p className="text-xs text-muted-foreground">Personal guide</p>
-                  </div>
-                  <div className="bg-background dark:bg-card rounded-2xl p-4 shadow-lg border-2 border-kid-yellow">
+                  </AnimatedCard>
+
+                  <AnimatedCard
+                    className="border-2 border-kid-yellow p-4"
+                    delay={2.9}
+                    animationType="fadeUp"
+                    hoverEffect={true}
+                    glowEffect={true}
+                  >
                     <Users className="w-8 h-8 text-kid-yellow mb-2" />
                     <h4 className="font-bold text-sm text-foreground">Study Groups</h4>
                     <p className="text-xs text-muted-foreground">Collaborate</p>
-                  </div>
-                  <div className="bg-background dark:bg-card rounded-2xl p-4 shadow-lg border-2 border-kid-red">
+                  </AnimatedCard>
+
+                  <AnimatedCard
+                    className="border-2 border-kid-red p-4"
+                    delay={3.1}
+                    animationType="fadeUp"
+                    hoverEffect={true}
+                    glowEffect={true}
+                  >
                     <Zap className="w-8 h-8 text-kid-red mb-2" />
                     <h4 className="font-bold text-sm text-foreground">Quick Tests</h4>
                     <p className="text-xs text-muted-foreground">Instant feedback</p>
-                  </div>
+                  </AnimatedCard>
                 </div>
               </div>
               

@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, useRoutes } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import { Toaster } from 'sonner';
 // Components
@@ -8,6 +8,7 @@ import { ThemeProvider } from './components/ThemeProvider';
 import { ScrollToTop } from './components/ScrollToTop';
 import { PomodoroProvider } from './contexts/PomodoroContext';
 import { TimeTrackingProvider } from './contexts/AutoTimeTrackingContext';
+import { LoadingScreen } from './components/animations';
 
 // Routes
 import { appRoutes } from './routes';
@@ -22,6 +23,8 @@ const AppRoutes = () => {
 };
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
+
   // Initialize OpenAI API key on app startup
   useEffect(() => {
     const initializeApiKey = async () => {
@@ -46,18 +49,26 @@ function App() {
     initializeApiKey();
   }, []);
 
+  const handleLoadingComplete = () => {
+    setIsLoading(false);
+  };
+
   return (
     <ThemeProvider>
       <PomodoroProvider>
         <TimeTrackingProvider>
           <ErrorBoundary>
-            <Router>
-              <ScrollToTop />
-              <Toaster richColors position="top-center" />
+            {isLoading ? (
+              <LoadingScreen onComplete={handleLoadingComplete} duration={2500} />
+            ) : (
+              <Router>
+                <ScrollToTop />
+                <Toaster richColors position="top-center" />
 
-              <AppRoutes />
-              {/* AuthListener removed, AuthGuard will handle protection */}
-            </Router>
+                <AppRoutes />
+                {/* AuthListener removed, AuthGuard will handle protection */}
+              </Router>
+            )}
           </ErrorBoundary>
         </TimeTrackingProvider>
       </PomodoroProvider>
