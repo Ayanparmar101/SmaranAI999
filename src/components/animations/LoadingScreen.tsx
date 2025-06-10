@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { gsap } from "gsap";
 import AnimatedText from "./AnimatedText";
-import SmaranLogo from "../SmaranLogo";
 
 interface LoadingScreenProps {
   onComplete?: () => void;
@@ -85,10 +84,11 @@ const LoadingScreen = ({ onComplete, duration = 3000 }: LoadingScreenProps) => {
     <div className="loading-bg fixed inset-0 flex flex-col items-center justify-center z-50 text-white">
       {/* Logo Container */}
       <div className="logo-container mb-8">
-        <div className="w-32 h-32 bg-white rounded-full flex items-center justify-center shadow-2xl">
-          <SmaranLogo
-            size={80}
-            className="text-blue-600"
+        <div className="w-32 h-32 bg-white rounded-full flex items-center justify-center shadow-2xl p-4">
+          <img
+            src="/android-chrome-192x192.png"
+            alt="Smaran.ai Logo"
+            className="w-full h-full object-contain"
           />
         </div>
       </div>
