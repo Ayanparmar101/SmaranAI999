@@ -5,7 +5,8 @@ import {
   AnimatedCard,
   LoadingScreen,
   ScrollReveal,
-  CountUp
+  CountUp,
+  AnimatedList
 } from '@/components/animations';
 import { BookOpen, Brain, Users, Zap, Star, Trophy, Target } from 'lucide-react';
 import { useState } from 'react';
@@ -205,6 +206,72 @@ const AnimationDemoPage = () => {
           </div>
         </section>
 
+        {/* AnimatedList Demo */}
+        <section className="mb-16">
+          <AnimatedText
+            text="Animated Lists"
+            className="text-2xl font-bold mb-8 text-center"
+            animationType="fadeUp"
+            trigger="scroll"
+            stagger={0.1}
+          />
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            <AnimatedCard
+              className="h-96"
+              delay={0.2}
+              animationType="fadeUp"
+              hoverEffect={true}
+            >
+              <h3 className="text-lg font-semibold mb-4">Learning Topics</h3>
+              <AnimatedList
+                items={[
+                  'Mathematics Fundamentals',
+                  'Physics Concepts',
+                  'Chemistry Basics',
+                  'Biology Overview',
+                  'History Timeline',
+                  'Geography Facts',
+                  'Literature Analysis',
+                  'Computer Science',
+                  'Art Appreciation',
+                  'Music Theory'
+                ]}
+                showGradients={true}
+                enableArrowNavigation={true}
+                onItemSelect={(item, index) => console.log('Selected:', item, index)}
+              />
+            </AnimatedCard>
+
+            <AnimatedCard
+              className="h-96"
+              delay={0.4}
+              animationType="fadeUp"
+              hoverEffect={true}
+            >
+              <h3 className="text-lg font-semibold mb-4">Study Tools</h3>
+              <AnimatedList
+                items={[
+                  'Flashcard Generator',
+                  'Study Planner',
+                  'Voice Assistant',
+                  'PDF Processor',
+                  'Grammar Checker',
+                  'Math Solver',
+                  'Pomodoro Timer',
+                  'Progress Tracker',
+                  'Quiz Creator',
+                  'Note Organizer'
+                ]}
+                showGradients={true}
+                enableArrowNavigation={true}
+                displayScrollbar={false}
+                onItemSelect={(item, index) => console.log('Selected tool:', item)}
+              />
+            </AnimatedCard>
+          </div>
+        </section>
+
         {/* CountUp Demo */}
         <section className="mb-16">
           <AnimatedText
@@ -329,6 +396,7 @@ const AnimationDemoPage = () => {
                 <li><strong>LoadingScreen:</strong> For full-screen loading experiences</li>
                 <li><strong>ScrollReveal:</strong> For scroll-triggered word-by-word reveals with rotation and blur</li>
                 <li><strong>CountUp:</strong> For animated number counting with Framer Motion springs</li>
+                <li><strong>AnimatedList:</strong> For smooth scrollable lists with gradients and keyboard navigation</li>
               </ul>
               <p>
                 All components support customizable timing, easing, and animation types.

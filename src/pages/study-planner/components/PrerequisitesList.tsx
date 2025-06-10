@@ -1,11 +1,12 @@
 
 import React from 'react';
-import { 
-  AccordionItem, 
+import {
+  AccordionItem,
   AccordionTrigger,
-  AccordionContent 
+  AccordionContent
 } from '@/components/ui/accordion';
 import { Lightbulb } from 'lucide-react';
+import { AnimatedList } from '@/components/animations';
 
 interface Prerequisite {
   topic: string;
@@ -28,14 +29,20 @@ const PrerequisitesList: React.FC<PrerequisitesListProps> = ({ prerequisites }) 
         </div>
       </AccordionTrigger>
       <AccordionContent>
-        <ul className="space-y-3 mt-2">
-          {prerequisites.map((prereq, index) => (
-            <li key={index} className="border-l-2 border-[#10B981] pl-3 py-1">
-              <h4 className="font-medium">{prereq.topic}</h4>
-              <p className="text-sm text-muted-foreground">{prereq.reason}</p>
-            </li>
-          ))}
-        </ul>
+        <div className="mt-2 h-64">
+          <AnimatedList
+            items={prerequisites.map(prereq => prereq.topic)}
+            showGradients={true}
+            enableArrowNavigation={false}
+            className="h-full"
+            renderItem={(item, index, isSelected) => (
+              <div className={`border-l-2 border-[#10B981] pl-3 py-2 ${isSelected ? 'bg-[#10B981]/10' : ''}`}>
+                <h4 className="font-medium">{item}</h4>
+                <p className="text-sm text-muted-foreground">{prerequisites[index]?.reason}</p>
+              </div>
+            )}
+          />
+        </div>
       </AccordionContent>
     </AccordionItem>
   );
