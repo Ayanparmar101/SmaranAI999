@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import DoodleButton from '@/components/DoodleButton';
 import { BookOpen, Brain, Users, Zap } from 'lucide-react';
 import { AnimatedText, AnimatedCard } from '@/components/animations';
-import GradientAnimatedText from '@/components/animations/GradientAnimatedText';
+import { gsap } from 'gsap';
 
 const LandingHeroSection = () => {
   const navigate = useNavigate();
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const subtitleRef = useRef<HTMLDivElement>(null);
 
   const handleGetStarted = () => {
     navigate('/auth');
@@ -16,6 +18,34 @@ const LandingHeroSection = () => {
     const featuresSection = document.getElementById('features-section');
     featuresSection?.scrollIntoView({ behavior: 'smooth' });
   };
+
+  useEffect(() => {
+    const title = titleRef.current;
+    const subtitle = subtitleRef.current;
+
+    if (title && subtitle) {
+      // Set initial state
+      gsap.set([title, subtitle], { opacity: 0, y: 50 });
+
+      // Animate title
+      gsap.to(title, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power3.out",
+        delay: 0.5
+      });
+
+      // Animate subtitle
+      gsap.to(subtitle, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power3.out",
+        delay: 1.2
+      });
+    }
+  }, []);
 
   return (
     <section className="relative py-12 sm:py-16 md:py-24 overflow-hidden bg-gradient-to-br from-background via-background to-muted/30">
@@ -37,34 +67,17 @@ const LandingHeroSection = () => {
               </span>
             </div>
             
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-              <AnimatedText
-                text="Transform Your"
-                className="block text-foreground"
-                animationType="fadeUp"
-                trigger="immediate"
-                delay={0.5}
-                stagger={0.1}
-              />
-              <GradientAnimatedText
-                text="Learning Journey"
-                className="block"
-                gradientClass="gradient-text-animated-slow"
-                animationType="scale"
-                trigger="immediate"
-                delay={1.2}
-                stagger={0.08}
-              />
+            <h1 ref={titleRef} className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+              <span className="block text-foreground">Transform Your</span>
+              <span className="gradient-text-animated-slow block" style={{ color: '#4E9BF5' }}>
+                Learning Journey
+              </span>
             </h1>
 
-            <AnimatedText
-              text="Unlock your potential with our comprehensive AI-powered educational platform. From interactive flashcards to personalized study plans, we make learning engaging and effective."
-              className="text-lg sm:text-xl md:text-2xl mb-8 text-muted-foreground leading-relaxed max-w-2xl mx-auto lg:mx-0"
-              animationType="fadeIn"
-              trigger="immediate"
-              delay={2}
-              stagger={0.02}
-            />
+            <div ref={subtitleRef} className="text-lg sm:text-xl md:text-2xl mb-8 text-muted-foreground leading-relaxed max-w-2xl mx-auto lg:mx-0">
+              Unlock your potential with our comprehensive AI-powered educational platform.
+              From interactive flashcards to personalized study plans, we make learning engaging and effective.
+            </div>
 
             {/* Key Benefits */}
             <div className="grid grid-cols-2 gap-4 mb-8 max-w-md mx-auto lg:mx-0">

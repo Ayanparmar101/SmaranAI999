@@ -164,6 +164,8 @@
   }
 
   .gradient-text-animated-slow {
+    /* Fallback color for browsers that don't support background-clip: text */
+    color: #4E9BF5;
     background: linear-gradient(
       45deg,
       #4E9BF5,
@@ -178,6 +180,14 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: gradient-flow 6s ease-in-out infinite;
+  }
+
+  /* Ensure gradient text is visible in all browsers */
+  @supports not (background-clip: text) {
+    .gradient-text-animated-slow {
+      background: none;
+      color: #4E9BF5;
+    }
   }
 
   /* Special gradient for Gujarati (red-orange theme) */
