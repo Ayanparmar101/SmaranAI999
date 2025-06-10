@@ -74,7 +74,7 @@ const LandingHeroSection = () => {
             
             <h1 ref={titleRef} className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
               <span className="block text-foreground">Transform Your</span>
-              <span className="block text-blue-500 font-bold">
+              <span className="gradient-text-animated-slow block">
                 Learning Journey
               </span>
             </h1>
