@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import DoodleButton from '@/components/DoodleButton';
 import { BookOpen, Brain, Users, Zap } from 'lucide-react';
 import { AnimatedText, AnimatedCard } from '@/components/animations';
+import GradientAnimatedText from '@/components/animations/GradientAnimatedText';
 
 const LandingHeroSection = () => {
   const navigate = useNavigate();
@@ -36,24 +37,25 @@ const LandingHeroSection = () => {
               </span>
             </div>
             
-            <div className="mb-6">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
               <AnimatedText
                 text="Transform Your"
-                className="block text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground"
+                className="block text-foreground"
                 animationType="fadeUp"
                 trigger="immediate"
                 delay={0.5}
                 stagger={0.1}
               />
-              <AnimatedText
+              <GradientAnimatedText
                 text="Learning Journey"
-                className="gradient-text-animated-slow text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold"
+                className="block"
+                gradientClass="gradient-text-animated-slow"
                 animationType="scale"
                 trigger="immediate"
                 delay={1.2}
                 stagger={0.08}
               />
-            </div>
+            </h1>
 
             <AnimatedText
               text="Unlock your potential with our comprehensive AI-powered educational platform. From interactive flashcards to personalized study plans, we make learning engaging and effective."

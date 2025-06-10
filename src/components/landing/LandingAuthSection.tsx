@@ -84,7 +84,7 @@ const LandingAuthSection = () => {
               <h4 className="font-bold mb-4">Join the Learning Revolution</h4>
               <div className="grid grid-cols-3 gap-4 text-center">
                 <div>
-                  <div className="text-2xl font-bold text-kid-blue">10K+</div>
+                  <div className="text-2xl font-bold text-kid-blue">100+</div>
                   <div className="text-xs text-muted-foreground">Students</div>
                 </div>
                 <div>
@@ -92,7 +92,7 @@ const LandingAuthSection = () => {
                   <div className="text-xs text-muted-foreground">Success Rate</div>
                 </div>
                 <div>
-                  <div className="text-2xl font-bold text-kid-purple">50+</div>
+                  <div className="text-2xl font-bold text-kid-purple">20+</div>
                   <div className="text-xs text-muted-foreground">Tools</div>
                 </div>
               </div>
