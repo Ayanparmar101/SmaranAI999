@@ -24,26 +24,31 @@ const LandingHeroSection = () => {
     const subtitle = subtitleRef.current;
 
     if (title && subtitle) {
-      // Set initial state
-      gsap.set([title, subtitle], { opacity: 0, y: 50 });
+      // Set initial state - make sure text is visible
+      gsap.set([title, subtitle], { opacity: 1, y: 0 });
 
-      // Animate title
-      gsap.to(title, {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: "power3.out",
-        delay: 0.5
-      });
+      // Simple fade in animation
+      gsap.fromTo(title,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power3.out",
+          delay: 0.5
+        }
+      );
 
-      // Animate subtitle
-      gsap.to(subtitle, {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: "power3.out",
-        delay: 1.2
-      });
+      gsap.fromTo(subtitle,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power3.out",
+          delay: 1.2
+        }
+      );
     }
   }, []);
 
@@ -69,7 +74,7 @@ const LandingHeroSection = () => {
             
             <h1 ref={titleRef} className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
               <span className="block text-foreground">Transform Your</span>
-              <span className="gradient-text-animated-slow block" style={{ color: '#4E9BF5' }}>
+              <span className="block text-blue-500 font-bold">
                 Learning Journey
               </span>
             </h1>
