@@ -84,11 +84,11 @@ const LoadingScreen = ({ onComplete, duration = 3000 }: LoadingScreenProps) => {
     <div className="loading-bg fixed inset-0 flex flex-col items-center justify-center z-50 text-white">
       {/* Logo Container */}
       <div className="logo-container mb-8">
-        <div className="w-40 h-40 bg-white rounded-full flex items-center justify-center shadow-2xl p-6">
+        <div className="w-40 h-40 bg-white rounded-full flex items-center justify-center shadow-2xl p-6 border-4 border-white">
           <img
             src="/android-chrome-192x192.png"
             alt="Smaran.ai Logo"
-            className="w-full h-full object-contain"
+            className="w-full h-full object-contain bg-white rounded-lg"
           />
         </div>
       </div>
